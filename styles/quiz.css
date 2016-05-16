@@ -1,0 +1,159 @@
+/*.options {
+	border: 3px solid blue;
+}
+.newGame {
+	border: 3px solid green;
+}
+.banner {
+	border: 3px solid LightGreen;
+}
+.quizbox {
+	border: 3px solid LightBlue;
+}
+.userAnswer {
+	border: 3px solid orange;
+}
+.question {	
+	border: 3px solid yellow;
+}
+.questionsAnswered {
+	border: 3px solid pink;
+}
+.question {
+	border:3px solid DarkBlue;
+	}
+.answerChoices {
+	border:3px solid DarkGreen;
+}
+.main {
+	border: 3px solid purple;
+	}
+div {
+	border: 5px solid red;
+}*/
+
+body {
+	margin:0;
+	padding:0;
+	background: url('../img/timelord_wp.jpg');
+	height: 600px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+h1 h2 {
+	font-family: 'Oswald', sans-serif;
+}
+/*header settings*/
+.header {
+	position: relative;
+	height: 15%;
+	padding: 1em;
+
+}
+.header h1 {
+	color: #FFF;
+	font-family: 'Oswald', sans-serif;
+	font-size: 3em;
+	padding: 0em;
+}
+.options {
+	margin: auto;
+	float: right;
+	position: relative;
+	vertical-align: middle;
+}
+.options h2 {
+	color: #FFF;
+	font-family: 'Oswald', sans-serif;
+}
+.newGame {
+	margin: auto;
+	float: left;
+}
+.newGame h2 {
+	color: #FFF;
+	font-family: 'Oswald', sans-serif;
+}
+.banner {
+	margin: auto;
+	width: 60%;
+	text-align: center;
+	margin-bottom: 1em;
+	vertical-align: text-top;
+	background-color:black;
+}
+/* main area settings */
+.main {
+	position: relative;
+	height:100%;
+	width:100%;
+}
+.main h1 {
+	font-size: 3em;
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	color: #CACFED;
+	outline-color: green;
+	text-shadow: 1px 2px 3px #666666;
+}
+.quizbox {
+	background-color:#102372;
+	height: 80%;
+	width: 80%;
+	margin: auto;
+	margin-top: .5em;
+	margin-bottom: 0em;
+
+}
+.question {	
+	float: left;
+	height: auto;
+	width: 49%;
+	
+}
+.userAnswer {
+	float: right;
+	height: auto;
+	width: 49%;
+}
+.questionsAnswered {
+	background-color: #102372;
+	height: 15%;
+	width: 80%;
+	margin: auto;
+	margin-bottom: 5em;
+	margin-top: -6em;
+
+}
+.questionsAnswered h2 {
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	color: #CACFED;
+	outline-color: green;
+	text-shadow: 1px 2px 3px #666666;
+}
+
+.question{
+	float:clear;
+}
+.answerChoices {
+	
+}
+.button {
+	border: .25em solid black;
+	background: #3498db;
+	border-radius: 28px;
+	text-shadow: 1px 2px 3px #666666;
+	color: #ffffff;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button:hover {
+	
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
