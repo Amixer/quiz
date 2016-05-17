@@ -44,6 +44,81 @@ body {
 h1 h2 {
 	font-family: 'Oswald', sans-serif;
 }
+
+/*style for hidden modal*/
+.overlay {
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	z-index: 1000;
+	display: block;
+}
+
+.content {
+	color: #fff;
+	background: black;
+	position: relative;
+	height: auto;
+	width: 600px;
+	border-radius: 3px;
+	top: 15%;
+	margin: auto auto;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+
+.content h3 {
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+	font-size: 2.4em;
+	font-weight: 300;
+	opacity: 0.8;
+	background: rgba(0,0,0,0.1);
+	border-radius: 3px 3px 0 0;
+}
+
+.content > div {
+	padding: 15px 40px 30px;
+	margin: 0;
+	font-weight: 300;
+	font-size: 1.15em;
+}
+
+.content > div p {
+	margin: 0;
+	padding: 10px 0;
+	line-height: 2em;
+	text-align: justify;
+}
+
+.content > div ol {
+	margin-bottom: -30px;
+	padding: 0 0 30px 20px;
+	text-align: left;
+}
+
+.content > div ol li {
+	padding: 5px 0;
+	display: block;	
+	list-style-type: disc;
+	line-height: 1.5em;
+}
+
+.content > div a {
+	font-size: 0.8em;
+	background: #1F253D;
+	color: #95a5a6;
+	padding: 0.5em 2em;
+	margin-bottom: 50px;
+	border-radius: 3px;
+	position: center;
+}
+
+
 /*header settings*/
 .header {
 	position: relative;
@@ -56,6 +131,9 @@ h1 h2 {
 	font-family: 'Oswald', sans-serif;
 	font-size: 3em;
 	padding: 0em;
+}
+.overlay {
+	display:none;
 }
 .options {
 	margin: auto;
@@ -137,10 +215,14 @@ h1 h2 {
 .question{
 	float:clear;
 }
+.question h2 {
+	align:center;
+}
+}
 .answerChoices {
 	
 }
-.button {
+.button #button {
 	border: .25em solid black;
 	background: #3498db;
 	border-radius: 28px;
@@ -157,3 +239,5 @@ h1 h2 {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+#

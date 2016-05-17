@@ -6,38 +6,61 @@
 		<meta charset="utf-8"/>
 		<!-- Stylesheets -->
 		<link href='https://fonts.googleapis.com/css?family=Oswald:400,700|Montserrat' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="styles/quiz.css"/> 
+		<link rel="stylesheet" href="styles/quiz.css"/>
+
 	</head>
 	<body>
 	<div class = "header"> 
-		<div class="options"><div class="button">
+		<div class="options"><div class="button" id = "opt">
 			<h2>Options</h2></div></div>
 		<div class= "newGame"><div class="button">
 			<h2>New Game</h2></div></div>
 		<div class= "banner"> 
 			<h1>Are You a Whovian?</h1>
-		</div></div>
+		</div>
+		<!-- directions overlay -->
+<div class="overlay" id="modal">
+				<div class="content">
+<h3>What The Who?</h3>
+<div>
+<p>This is the Doctor Who Quiz Game. Here are the rules:</p>
+	<ol>
+	<li>1. There are questions about Doctor Who</li>
+	<li>2. Enter your answers in the box</li>
+	<li>3. Find out if you're a true whovian</li>
+	</ol>
+						<p> Are you ready?</p>
+						<a class="close" href="#">Geronimo!</a>
+					</div>
+				</div>
+			</div>
+	
+
+	</div>
 	<div class = "main">
 	Main
 		<div class = "quizbox">
-			<div class = "question">
+			<div class = "question" id= "question">
 				<h1>Do You Know Who?</h1>
+				<span class="question"><h2>"What race is the Doctor?"</h2></span><br>
 				</div>
 			<div class = "userAnswer">
 				<h1>Select An Answer</h1>
 				<div class = "answerChoices">
-				<ul>
-				<li>answer 1</li>
-				<li>answer 2</li>
-				<li>answer 3</li>
-				<li>answer 4</li>
-				</ul>
+			<div id="answer_holder">
+				<input type="radio" name="option" class="option" value="0"><span class="answer">Human</span><br>
+				<input type="radio" name="option" class="option" value="1"><span class="answer">Time Lord</span><br>
+				<input type="radio" name="option" class="option" value="2"><span class="answer">Judoon</span><br>
+				<input type="radio" name="option" class="option" value="3"><span class="answer">Dream Lord</span><br>
+			</div>
 				</div>
-				<div class = "button"> <h2>Submit</h2> </div>
+				<div class = "button_holder">
+				<input type = "button" id="submit" value="Transmit"></div>
+				<input type="button" id="retry_button" value="Wibbly Wobbly Timey Wimey"></div>
 			</div>
 		</div>
 	</div>
-		<div class = "questionsAnswered"> <div class = num> <h2>0</h2> </div>
+		<div class = "questionsAnswered"><div class = num> <h2>0</h2> </div>
 		<h2>#questions left</h2>
 		</div>
 <div class = "results"></div>
@@ -46,10 +69,8 @@
 
 
 
-
 		<!-- JavaScript -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
-	</
-body>
+	</body>
 </html>

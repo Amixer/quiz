@@ -1,164 +1,168 @@
-//initialize variables
-'use strict';
-var secretNumber, 
-userGuess, 
-pastGuesses = [], 
-count,
-guessHtml, 
-userFeedback,
-alreadyGuessed,
-newButton,
-form ,
-input,
-feedback,
-countElement,
-guessList;
+'use scrict'
 
 $(document).ready(pageLoad);
 
  function pageLoad(){
 	
 	/*--- Display information modal box ---*/
-  	$('.what').click(function(){
+  	$('#opt').click(function(){
     	$('.overlay').fadeIn(1000);
   	});
   	/*--- Hide information modal box ---*/
   	$('a.close').click(function(){
   		$('.overlay').fadeOut(1000);
   	});
+  }
 
-  	//fetch dom objects
-  	newButton = $('a.new');
-  	form = $('form');
-  	input = form.find('#userGuess');
-  	feedback = $('#feedback');
-  	countElement = $('#count');
-  	guessList = $('#guessList');
+  /* Coffee Test */
+  $(document).ready(function() {
+    //quiz question array
+    var questions = [
+    {
+        question: "What race is the Doctor?",
+        choices: ["Human", "Time Lord", "Judoon", "Dream Lord"],
+        qNum : 0,
+        correct : 1,
+    },
+        {
+        question: "Where is the Doctor from?",
+        choices: ["Skaro", "Mars", "Earth", "Galifrey"],
+        qNum : 1,
+        correct : 3,
+    },
+        {
+        question: "What is the 11th Doctor's favorite accessory?",
+        choices: ["Bow tie","stetson","fez", "space-helmet"],
+        qNum : 2,
+        correct : 0,
+    },
+   {
+        question: "Who are the four companions in the newer series?",
+        choices: ["Rose Robins, Jackie Tyler, Donna Book, and Amy River","Sally Sparrow, Rose Tyler, Donna Knoble, Martha Jones",
+		"Rose Tyler, Martha Jones, Donna Noble, and Amy Pond", "Martha Jones, Sophie Smith, Rose Thomas, and Donna Noble"],
+        qNum : 3,
+        correct : 2,
+    },
+   {
+        question:"What does TARDIS stand for?",
+        choices: ["Time and Relative Dimensions In Space", "Tourists And Relatives Demand Instant Sandwiches", "Tacos Are Rarely Divided In Stations","Time and Race Do Insist Strategy"],
+        qNum : 4,
+        correct : 0,
+    },
+   {
+        question: "In what relation to him was the first Doctor's companion?",
+        choices: ["friend", "cousin", "grandaughter", "daughter"],
+        qNum : 5,
+        correct : 2,
+    },
+   {
+        question: "Who is the Doctor's greatest enemy?",
+        choices: ["Sontarans", "Weeping Angels", "Cybermen", "Daleks"],
+        qNum : 6,
+        correct : 3,
+    },
+   {
+        question: "When is London deserted for fear of alien attack?",
+        choices: ["At New Year", "Ever Saturday around 9pm", "Christmas", "When it rains"],
+        qNum : 7,
+        correct : 2,
+    },
+   {
+        question: "What's the first thing the doctor asks Amy Pond for when he crashes in her yard?",
+        choices: ["Directions", "An apple", "fish custard", "a sonic screwdriver"],
+        qNum : 8,
+        correct : 1,
+    },
+   {
+        question: "What is the Doctor's name for the TARDIS?",
+        choices: ["Old Girl", "Type 40", "Sexy", "Idris"],
+        qNum : 9,
+        correct : 2,
+    },
 
-    //page load
-    newGame();
-    //event handlers
-    form.submit(function(event){
-      event.preventDefault();
-      getUserGuess();
+
+
+
+
+
+
+      ]
+    
+    //global variables
+    var numberCorrect = 0;
+    var currentQuestion = 0;
+    
+    $("#question").on("click", "#submit", function () {
+        updateCup();
+        currentQuestion++;
+        nextQuestion();
     });
-    newButton.click(newGame);
-}
+    
+    $("#question").on("click", "#retry_button", function () {
+        numberCorrect = 0;
+        currentQuestion = 0;
+        $(".score_cup").css("display", "none");
+        $("#score_cup0").css("display", "inline");
+        var newQuestion = '<span class="question">'+questions[currentQuestion].question+'</span><br><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="retry_button" value="Try Again!"></div>';
+        $("#question_wrapper").html(newQuestion);
+        $("#last_question_fact").html("");
+    });
 
-//new game function
-function newGame(){
-	form.find('input[type=submit]').css('opacity','1');
-	resetVariables();
-	render();
-	generateNumber();
-}
+    function updateCup() {
+        var answer = $("input[type='radio']:checked").val();
+        if (answer == questions[currentQuestion].correct) {
+            numberCorrect++;    
+        }
+        if (numberCorrect == 1) {
+            $(".score_cup").css("display", "none")
+            $("#score_cup1").fadeIn();
+        }
+        else if (numberCorrect == 2) {
+            $(".score_cup").css("display", "none")
+            $("#score_cup2").fadeIn();
+        }
+        else if (numberCorrect == 3) {
+            $(".score_cup").css("display", "none")
+            $("#score_cup3").fadeIn();
+        }
+        else if (numberCorrect == 4) {
+            $(".score_cup").css("display", "none")
+            $("#score_cup4").fadeIn();
+        }
+        else if (numberCorrect == 5) {
+            $(".score_cup").css("display", "none")
+            $("#score_cup5").fadeIn();
+        }
+    }
 
-//get the user guess
-function getUserGuess(){
-	//get the user guess
-	userGuess = input.val();
-	//reset input value
-	input.val('');
-	//focus on input for next guess
-	input.focus();
-	//ensure valid input
-	if(checkGuess()){return ;}
-	//generate feedback
-	generateFeedback();
-	//track the past user guesses
-	trackGuess();
-	//increment the count
-	guessCount();
-	//render changes to the page
-	render();
-}
-
-  	//check for valid input
-  	function checkGuess(){
-  		if(userGuess % 1 !== 0){
-  			alert('please input a number');
-  			return true;
-  		}
-  		if(userGuess < 0 || userGuess > 101){
-  			alert('please choose a number between zero and 100');
-  			return true;
-  		}
-  		if(pastGuesses.length > 0){
-			$.each(pastGuesses,function(guess,value){
-				if(userGuess == value){
-					alreadyGuessed = true;
-				}
-			}); 
-		}
-		if(alreadyGuessed){
-			alreadyGuessed = false;
-			alert('You guessed this number already');
-			return true;
-		}
-    return false;
-	}
-
-//generate user feedback
-function generateFeedback(){
-	if(secretNumber == userGuess){
-		winner();
-	} else if(Math.abs(secretNumber - userGuess) < 10){
-		userFeedback = 'super hot';
-	} else if(Math.abs(secretNumber - userGuess) < 20 && Math.abs(secretNumber - userGuess) > 9){
-		userFeedback = 'warm';
-	} else if(Math.abs(secretNumber - userGuess) < 30 && Math.abs(secretNumber - userGuess) > 19){
-		userFeedback = 'cool';
-	} else {
-		userFeedback = 'cold';
-	}
-}
-
-//keep track of the users past guesses
-function trackGuess(){
-	pastGuesses.push(userGuess);
-	guessHtml = '';
-	if(pastGuesses[0].length) {
-		$.each(pastGuesses,function(guess,value){
-			guessHtml += '<li>' + value + '</li>';
-		});
-	}
-}
-
-//keep track of guess count
-function guessCount(){
-	count++;
-}
-
-	//page render function
-function render(){
-	guessList.html(guessHtml);
-	countElement.html(count);
-	feedback.html(userFeedback);
-}
-
-function winner(){
-	userFeedback = 'You Won. Click new game to play again';
-	form.find('input[type=submit]').css('opacity','0');
-}
-  	
-//generate secret number
-function generateNumber(){
-	secretNumber = Math.floor(Math.random()*100)+1;
-}
-
-//reset variable 
-function resetVariables(){
-	count = 0;
-	pastGuesses = [];
-	guessHtml='';
-	userGuess = '';
-	userFeedback = 'Make your Guess!';
-}
-  	
-  	
-
-  
-
-
-
-
+    function nextQuestion() {
+        if (currentQuestion < 5) {
+            $(".question").remove();
+            $("#answer_holder input").remove();
+            $("#answer_holder span").remove();
+			$("#last_question_fact").hide();
+            var newQuestion = '<span class="question">'+questions[currentQuestion].question+'</span><br><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="retry_button" value="Try Again!"></div>';
+            $("#question_wrapper").html(newQuestion);
+            var lastFact= questions[currentQuestion-1].fact;
+            $("#last_question_fact").html(lastFact).fadeIn();
+        }
+        else {
+            $(".question").remove();
+            $("#answer_holder input").remove();
+            $("#answer_holder span").remove();
+			$("#last_question_fact").fadeOut();
+            $("#submit").css("display", "none");
+            $("#retry_button").css("display", "inline");
+            var lastFact= questions[currentQuestion-1].fact;
+            $("#last_question_fact").html(lastFact);
+            if (numberCorrect == 1) {
+                var finalScore = '<span id="final">Congratulations on finishing the quiz!  You correctly answered '+numberCorrect+' question.'
+                $("#answer_holder").html(finalScore);
+            }
+            else {
+                var finalScore = '<span id="final">Congratulations on finishing the quiz!  You correctly answered '+numberCorrect+' questions.'
+                $("#answer_holder").html(finalScore);
+            }
+        }
+    }
+});
